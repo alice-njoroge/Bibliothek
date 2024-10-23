@@ -1,15 +1,16 @@
 
 function addBooksToUI(books){
-    let booksHTMLString = '';
-    books.map(book => {
-        let bookString = `
-        <article>
-            <h2>${book.isbn}</h2>
-            <p>${book.title}</p>
-        </article> `
-        booksHTMLString += bookString
-    });
-    document.querySelector('.books-center').innerHTML = booksHTMLString;
+    let tableRowHTMLString = '';
+    for(let book of books){
+        let rowString = `
+        <tr>
+            <td>${book.isbn}</td>
+            <td>${book.title}</td>
+            <td>Deets</td>
+        </tr>`
+        tableRowHTMLString += rowString
+    }
+    document.querySelector('.books-rows').innerHTML = tableRowHTMLString;
 
 }
 //fetch the books from the api
@@ -20,6 +21,7 @@ async function fetchBooks() {
             console.log('Network response was not ok ' + response.statusText);
         }
         const data = await response.json();
+        console.log(data)
         addBooksToUI(data);
 
     } catch (error) {

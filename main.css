@@ -52,7 +52,7 @@ body {
     padding: 4rem 0;
 }
 
-.books-center {
+.books-table {
     width: 90vw;
     margin: 0 auto;
     max-width: 1170px;
@@ -60,6 +60,14 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     grid-column-gap: 1.5rem;
     grid-row-gap: 2rem;
+    text-align: left;
+}
+.heading-data{
+    padding: 10px;
+    font-weight: bold;
+    font-size: large;
+}
+.books-rows{
 
 }
 
