@@ -1,9 +1,11 @@
+import {fetchBookData} from "./api/api.js";
+
 //create a single row
 function createTableRow(book) {
     //  <tr class="heading-data">
-    //     <th>ISBN</th>
-    //     <th>Title</th>
-    //     <th>Details</th>
+    //     <td>ISBN</td>
+    //     <td>Title</td>
+    //     <td>Details</td>
     //  </tr>
 
     const row = document.createElement('tr');
@@ -16,8 +18,8 @@ function createTableRow(book) {
 
     //<a href="link">Text</a>
     const aTag = document.createElement('a');
-    aTag.href = "about.html"
-    aTag.textContent = book.id;
+    aTag.href = `book/index.html?id=${book.id}`;
+    aTag.textContent = "View Details";
     detailsCell.appendChild(aTag);
 
     row.appendChild(isbnCell);
@@ -34,23 +36,12 @@ function addBooksToUI(books) {
         let bookRow = createTableRow(book);
         tableRow.appendChild(bookRow);
     }
-
 }
 
 //fetch the books from the api
 async function fetchBooks() {
-    try {
-        const response = await fetch('http://localhost:4730/books');
-        if (!response.ok) {
-            console.log('Network response was not ok ' + response.statusText);
-        }
-        const data = await response.json();
-        console.log(data)
-        addBooksToUI(data);
-
-    } catch (error) {
-        console.log("oops there was an issue with the fetch operation", error)
-    }
+    const data = await fetchBookData();
+    addBooksToUI(data);
 }
 
 fetchBooks();
@@ -63,3 +54,6 @@ fetchBooks();
 //wishlist or already read function
 //login
 //filter out all books from a given user and give a discount of 20%
+
+//http://localhost:63342/books/?=1001606140805
+//http://localhost:63342/Bibliothek/index.html?_ijt=jokr9e26bbdbj6c52db0nak5lg&_ij_reload=RELOAD_ON_SAVE
