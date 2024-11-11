@@ -2,7 +2,7 @@
 
 :root {
     --primaryColor: #f09d51;
-    --mainWhite: #fff;
+    --mainWhite: #ffffff;
     --mainBlack: #222;
     --mainGrey: #ececec;
     --mainSpacing: 0.1rem;
@@ -20,18 +20,29 @@ body {
     background: var(--mainWhite);
     font-family: "Lato", sans-serif;
 }
-
+.primary-button {
+    padding: 15px;
+    margin: 10px;
+    background: rgb(000, 000, 255, 0.5) ;
+    color: var(--mainWhite);
+    font-weight: bold;
+    border-radius: 5px;
+    width: 200px;
+}
 
 /* --------------- Navbar ---------------- */
 .navbar {
     position: sticky;
     top: 0;
-    height: 60px;
+    height: 100px;
     width: 100%;
     display: flex;
     align-items: center;
-    background: rgb(231, 226, 221);
+    background: var(--mainWhite);
     z-index: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin-bottom: 20px;
 }
 
 .navbar-center {
@@ -51,29 +62,141 @@ body {
     padding: 4rem 0;
 }
 
-.books-table {
-    width: 90vw;
-    margin: 0 auto;
-    max-width: 1170px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    grid-column-gap: 1.5rem;
-    grid-row-gap: 2rem;
-    text-align: left;
+.book-wrapper {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
 }
-
-.heading-data {
+.book {
+    width: 380px;
+    height: 380px;
+    background-color: #f9f9f9;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 10px;
     padding: 10px;
-    font-weight: bold;
-    font-size: large;
 }
 
-.books-rows {
+.img-container {
+    width: 100%;
+    height: 60%;
+    overflow: hidden;
+    position: relative;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.book h3 {
+    text-transform: capitalize;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    letter-spacing: var(--mainSpacing);
+    text-align: center;
+}
+
+.book h4 {
+    margin-top: 0.7rem;
+    letter-spacing: var(--mainSpacing);
+    color: var(--primaryColor);
+    text-align: center;
+}
+.book-actions {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin-top: 5px;
+}
+
+.bag-btn {
+    position: absolute;
+    bottom: 8%;
+    right: 0;
+    background: var(--primaryColor);
+    border: none;
+    text-transform: uppercase;
+    padding: 0.5rem 0.75rem;
+    letter-spacing: var(--mainSpacing);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.bag-btn:hover{
 
 }
 
 
 /* --------------- End of Books ---------------- */
+
+
+/* --------------- Cart ---------------- */
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    transition: var(--mainTransition);
+    background: rgba(240, 157, 81, 0.5);
+    z-index: 2;
+    visibility: hidden;
+}
+
+.cart {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    z-index: 3;
+    background: rgb(231, 226, 221);
+    padding: 1.5rem;
+    transition: var(--mainTransition);
+    transform: translateY(100%);
+}
+
+.showCart {
+    transform: translateX(0);
+}
+
+/*---------------end of cart---------------*/
+
+/*---------------show one book page---------------*/
+.book-page-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.book-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 50%;
+    height: 90%;
+    padding: 20px;
+    margin-top: 20px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.cover-image {
+    border: #000000 1px solid;
+    height: 250px;
+    margin: 10px;
+
+}
+
+/*---------------end of show one book page---------------*/
 
 /* --------------- Book Update Form  ---------------- */
 .form-container {
@@ -102,16 +225,19 @@ body {
     text-align: center;
     margin-top: 20px;
 }
-.input-wrapper input{
+
+.input-wrapper input {
     min-width: 400px;
     padding: 10px;
 }
-.input-wrapper textarea{
+
+.input-wrapper textarea {
     min-width: 400px;
     padding: 10px;
     height: 130px;
 }
-.label-wrapper{
+
+.label-wrapper {
     font-weight: bold;
 }
 

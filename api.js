@@ -1,5 +1,4 @@
-
-export async function fetchData(path = '', options = {}) {
+async function fetchData(path = '', options = {}) {
     try {
         const response = await fetch( path, {
             headers: {
@@ -18,11 +17,28 @@ export async function fetchData(path = '', options = {}) {
     }
 }
 
-export async function fetchBookData(path = '', options = {}) {
-    const bookApiURL = 'http://localhost:4730/books';
+const bookApiURL = 'http://localhost:4730/books';
 
+export async function getBooks(options = {}) {
+    return await fetchData(bookApiURL, options)
+}
+export async function getBooksById(path, options = {}) {
     return await fetchData(bookApiURL + path, options)
 }
+export async function updateBook(path, options){
+    return await  fetchData(bookApiURL + path, {
+        method: 'PUT',
+        ...options
+    })
+}
+export async function deleteBook(path, options){
+    return await fetchData(bookApiURL + path, {
+        method: 'DELETE',
+        ...options
+    })
+
+}
+
 
 //inheritance for all CRUD operations
 //wish list

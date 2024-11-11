@@ -1,46 +1,69 @@
-import {fetchBookData} from "./api/api.js";
+import {getBooks} from "./api.js";
+import {renderNav} from "./module.js";
+
+renderNav();
 
 //create a single row
-function createTableRow(book) {
-    //  <tr class="heading-data">
-    //     <td>ISBN</td>
-    //     <td>Title</td>
-    //     <td>Details</td>
-    //  </tr>
+function createBookUI(book) {
+    const {cover, title, author, price, isbn } = book;
 
-    const row = document.createElement('tr');
+    const article = document.createElement('article');
+    article.classList.add('book');
 
-    const isbnCell = document.createElement('td');
-    isbnCell.textContent = book.isbn;
-    const titleCell = document.createElement('td');
-    titleCell.textContent = book.title;
-    const detailsCell = document.createElement('td');
+    const  imgDiv = document.createElement('div');
+    imgDiv.classList.add('img-container')
 
-    //<a href="link">Text</a>
+    const image = document.createElement('img');
+    //image.classList.add('book-img')
+    image.src = cover;
+    image.alt = 'book cover';
+    imgDiv.append(image);
+
+    const bookTitle = document.createElement('h3');
+    bookTitle.innerText = title;
+
+    const authorTag= document.createElement('h4');
+    authorTag.innerText = author;
+
+    const costTag = document.createElement('h4');
+    costTag.innerText = price;
+
+    const actionsDiv = document.createElement('div');
+    actionsDiv.classList.add('book-actions')
+
+    const addToCart = document.createElement('button');
+    addToCart.classList.add('bag-btn');
+    addToCart.innerText = "Add to Cart";
+    addToCart.addEventListener('click', openCart);
+
     const aTag = document.createElement('a');
     aTag.href = `book/index.html?id=${book.id}`;
     aTag.textContent = "View Details";
-    detailsCell.appendChild(aTag);
 
-    row.appendChild(isbnCell);
-    row.appendChild(titleCell);
-    row.appendChild(detailsCell);
+    actionsDiv.append(aTag, addToCart)
 
-    return row;
+    article.append(imgDiv, bookTitle, authorTag, costTag, actionsDiv );
+    return article;
 }
 
 //render multiple rows to the UI
 function addBooksToUI(books) {
-    const tableRow = document.querySelector('.books-rows');
+    const bookCard = document.querySelector('.book-wrapper');
+
     for (let book of books) {
-        let bookRow = createTableRow(book);
-        tableRow.appendChild(bookRow);
+        let bookArticle = createBookUI(book);
+        bookCard.append(bookArticle)
     }
+}
+
+function openCart (){
+    document.querySelector('.cart-overlay').style.visibility = 'visible';
+    document.querySelector('.cart').style.transform = 'translateY(0)';
 }
 
 //fetch the books from the api
 async function fetchBooks() {
-    const data = await fetchBookData();
+    const data = await getBooks();
     addBooksToUI(data);
 }
 

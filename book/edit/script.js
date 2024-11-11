@@ -1,5 +1,9 @@
 import {inputRender} from './module.js'
-import {fetchBookData} from "../../api/api.js";
+import {getBooksById, updateBook} from "../../api.js";
+import {renderNav} from "../../module.js";
+
+renderNav()
+
 
 //render the book
 const state = {
@@ -55,8 +59,7 @@ function renderBook() {
         }
         const path =  `/${state.currentBookId}`
 
-        const response = await fetchBookData(path, {
-            method: 'PUT',
+        const response = await updateBook(path, {
             body: JSON.stringify(updatedFormData)
         });
         //images - the api won't allow you to change >> convert to base64
@@ -71,7 +74,7 @@ function renderBook() {
 //fetch data from the server /book
 async function fetchSingleBook(id) {
     const path = `/${id}`
-    state.bookData = await fetchBookData(path);
+    state.bookData = await getBooksById(path);
     renderBook();
 
 }
