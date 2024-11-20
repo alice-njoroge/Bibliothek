@@ -23,11 +23,14 @@ body {
 .primary-button {
     padding: 15px;
     margin: 10px;
-    background: rgb(000, 000, 255, 0.5) ;
+    background: var(--primaryColor) ;
     color: var(--mainWhite);
     font-weight: bold;
     border-radius: 5px;
     width: 200px;
+}
+.a-tag {
+    color: var(--mainBlack);
 }
 
 /* --------------- Navbar ---------------- */
@@ -82,6 +85,20 @@ body {
     margin: 10px;
     padding: 10px;
 }
+.bag-btn {
+    position: absolute;
+    bottom:5%;
+    right: 0;
+    background: var(--primaryColor);
+    border: none;
+    text-transform: uppercase;
+    padding: 0.5rem 0.75rem;
+    letter-spacing: var(--mainSpacing);
+    font-weight: bold;
+    transition: var(--mainTransition);
+    transform: translateX(101%);
+    cursor: pointer;
+}
 
 .img-container {
     width: 100%;
@@ -93,8 +110,23 @@ body {
 .img-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
 }
+
+.img-container:hover .bag-btn {
+    transform: translateX(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.img-container:hover img{
+    transform: scale(1.1);
+}
+.book:hover .bag-btn {
+    transform: translateX(0); /* Slide in on hover */
+}
+
 .book h3 {
     text-transform: capitalize;
     font-size: 1.1rem;
@@ -108,6 +140,7 @@ body {
     letter-spacing: var(--mainSpacing);
     color: var(--primaryColor);
     text-align: center;
+    font-weight: bold;
 }
 .book-actions {
     display: flex;
@@ -116,21 +149,8 @@ body {
     margin-top: 5px;
 }
 
-.bag-btn {
-    position: absolute;
-    bottom: 8%;
-    right: 0;
-    background: var(--primaryColor);
-    border: none;
-    text-transform: uppercase;
-    padding: 0.5rem 0.75rem;
-    letter-spacing: var(--mainSpacing);
-    font-weight: bold;
-    cursor: pointer;
-}
-
 .bag-btn:hover{
-
+    color: var(--mainWhite);
 }
 
 
@@ -145,6 +165,7 @@ body {
     width: 100%;
     height: 100%;
     transition: var(--mainTransition);
+    transition-delay: 0.2ms;
     background: rgba(240, 157, 81, 0.5);
     z-index: 2;
     visibility: hidden;
@@ -154,7 +175,7 @@ body {
     position: fixed;
     top: 0;
     right: 0;
-    width: 100%;
+    width: 30%;
     height: 100%;
     overflow: scroll;
     z-index: 3;
@@ -163,10 +184,26 @@ body {
     transition: var(--mainTransition);
     transform: translateY(100%);
 }
+.cart-item{
+    width: 100%;
+    height: 200px;
+    background: rgb(231, 226, 221);
+    overflow: hidden;
+    position: relative;
+    padding: 10px;
+    display: flex;
+}
 
 .showCart {
     transform: translateX(0);
 }
+.close-cart {
+    transform: translateX(100%);
+}
+.cart-image {
+    justify-content: left;
+}
+
 
 /*---------------end of cart---------------*/
 
