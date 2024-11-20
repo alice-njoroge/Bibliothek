@@ -28,8 +28,8 @@ export class DOMCreator {
     static appendNode(parentNode, childNode) {
 
          if (Array.isArray(childNode)){
-             console.log("parebbt", parentNode.getNode())
-             parentNode.getNode().append(...childNode.map(node => node.getNode()))
+             const children = childNode.map(node => node.getNode());
+             parentNode.getNode().append(...children)
          }else{
              parentNode.getNode().append(childNode.getNode());
          }

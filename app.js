@@ -29,8 +29,7 @@ function createBookUI(book) {
     const authorTag =  $creator('h4', {innerText: author});
     const costTag =  $creator('h4', {innerText: price});
 
-    const actionsDiv = document.createElement('div');
-    actionsDiv.classList.add('book-actions')
+    const actionsDiv =$creator('div', {class: 'book-actions'})
 
     const addToCart = $creator('button', {class:'bag-btn', innerText: "Add to Cart" })
     const addToCartButton =  addToCart.getNode()
@@ -43,9 +42,8 @@ function createBookUI(book) {
     const aTag = $creator(
         'a',
         {href:`book/index.html?id=${id}`, class: 'a-tag', textContent: "View Details" })
-    const aTagNode = aTag.getNode()
 
-    //  DOMCreator.appendNode(actionsDiv, [aTagNode, addToCartButton])
+    DOMCreator.appendNode(actionsDiv, [aTag, addToCart])
 
     DOMCreator.appendNode(article, [imgDiv, bookTitle, authorTag, costTag, actionsDiv])
     return article.getNode();
